@@ -89,6 +89,7 @@ async function handleTelegram(request, env) {
       chat_id: cq.message.chat.id,
       message_id: cq.message.message_id,
       text: SECTIONS[id].text,
+      parse_mode: "HTML",
       reply_markup: tgKeyboard(id),
       disable_web_page_preview: true,
     });
@@ -101,6 +102,7 @@ async function handleTelegram(request, env) {
   await tg(env, "sendMessage", {
     chat_id: msg.chat.id,
     text: SECTIONS.start.text,
+    parse_mode: "HTML",
     reply_markup: tgKeyboard("start"),
     disable_web_page_preview: true,
   });
@@ -155,6 +157,7 @@ async function handleMax(request, env) {
 function maxMessage(id) {
   return {
     text: SECTIONS[id].text,
+    format: "html",
     attachments: [
       {
         type: "inline_keyboard",
